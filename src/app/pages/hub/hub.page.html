@@ -4,10 +4,31 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Hub</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="hub-content">
+  <div class="hub-shell">
+    <h1 class="hub-title">Go to...</h1>
+
+    <div class="hub-actions">
+      <ion-button
+        *ngFor="let button of buttons"
+        class="hub-button"
+        expand="block"
+        (click)="onGoTo(button.route)"
+      >
+        <span class="hub-button-inner">
+          <span class="hub-button-text">{{ button.label }}</span>
+
+          <span class="hub-icon-slot">
+            <img
+              *ngIf="isIconVisible(button.id)"
+              [src]="button.iconPath"
+              [alt]="button.label"
+              (error)="onIconError(button.id)"
+            />
+            <span *ngIf="!isIconVisible(button.id)" class="hub-emoji">{{ button.fallbackEmoji }}</span>
+          </span>
+        </span>
+      </ion-button>
+    </div>
+  </div>
 </ion-content>

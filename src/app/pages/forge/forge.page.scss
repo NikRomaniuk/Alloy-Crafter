@@ -1,0 +1,303 @@
+.forge-content {
+	--background: linear-gradient(180deg, #efefef 0%, #dadada 100%);
+}
+
+.forge-shell {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 20px);
+  padding: clamp(16px, 4vw, 24px);
+  height: 100%;
+}
+
+.forge-recipe {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vw, 12px);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+.recipe-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1vw, 10px);
+  flex-wrap: wrap;
+}
+
+.recipe-slot {
+  width: clamp(64px, 8vw, 128px);
+  height: clamp(64px, 8vw, 128px);
+  border: 5px solid #111111;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .fallback {
+    font-size: clamp(20px, 4vw, 32px);
+  }
+
+  &.clickable {
+    cursor: pointer;
+    border-color: #111111;
+    transition: all 0.2s ease;
+
+    &:hover:not(.disabled) {
+      border-color: #111111;
+      background: #e8f0ff;
+      transform: scale(1.05);
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &.output {
+    border-color: #111111;
+  }
+}
+
+.quantity-label {
+  font-size: clamp(12px, 1.5vw, 64px);
+  color: #111111;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.plus,
+.equals {
+  font-size: clamp(24px, 2vw, 48px);
+  color: #111111;
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 0 clamp(2px, 0.5vw, 4px);
+}
+
+.recipe-name {
+  text-align: center;
+  font-size: clamp(24px, 1.8vw, 64px);
+  color: #111111;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.selector-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+
+  ion-card {
+    width: clamp(280px, 90vw, 400px);
+    max-height: 70vh;
+    overflow-y: auto;
+    background: #f4f4f4;
+    border: 3px solid #111111;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  ion-list {
+    background: transparent;
+  }
+
+  ion-item {
+    --background: transparent;
+    --padding-start: 0;
+    --padding-end: 0;
+    --inner-padding-end: 0;
+  }
+
+  ion-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(24px, 1.5vw, 48px);
+  }
+
+  .selector-icon-slot {
+    width: clamp(24px, 2vw, 36px);
+    height: clamp(24px, 2vw, 36px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 2px solid #111111;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .selector-emoji {
+    font-size: clamp(14px, 1.4vw, 22px);
+    line-height: 1;
+  }
+
+  .material-name {
+    color: #111111;
+    font-weight: 500;
+  }
+
+  .material-quantity {
+    color: #666666;
+    font-size: 0.9em;
+  }
+
+  ion-radio {
+    --color: #999999;
+    --color-checked: #111111;
+  }
+}
+
+.crafting-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.5vw, 16px);
+  justify-content: flex-end;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: clamp(12px, 2vw, 16px);
+}
+
+.progress-label {
+  font-size: clamp(1.45rem, 6vw, 2.5rem);
+  color: #111111;
+  font-weight: 700;
+}
+
+ion-progress-bar {
+  --buffer-background: #e0e0e0;
+  --progress-background: linear-gradient(90deg, #5edd44, #bfdd38);
+  height: clamp(48px, 1vw, 86px);
+  border: 5px solid #111111;
+  border-radius: 8px;
+}
+
+.bang-button,
+.craft-button {
+  margin: 0;
+  width: min(80vw, 520px);
+  text-transform: none;
+  --background-hover: transparent;
+  --background-focused: transparent;
+  --background-activated: transparent;
+  --box-shadow: none;
+  --padding-top: clamp(10px, 1.5vw, 14px);
+  --padding-bottom: clamp(10px, 1.5vw, 14px);
+  font-size: clamp(1.45rem, 6vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  --color: #111111;
+  --background: #ffffff;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled) {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+.bang-button {
+  width: min(68vw, 440px);
+  --background: #8aeb8a;
+}
+
+.bang-button::part(native),
+.craft-button::part(native) {
+  min-height: 86px;
+  border: 5px solid #111111;
+  border-radius: 36px;
+  background: #ffffff;
+  padding: 0 18px;
+}
+
+.bang-button::part(native) {
+  background: #dff4df;
+}
+
+.loading-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #111111;
+  font-size: clamp(14px, 2vw, 18px);
+  gap: clamp(10px, 1.5vw, 16px);
+}
+
+@media (max-width: 480px) {
+  .forge-shell {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .forge-recipe {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .recipe-row {
+    gap: 6px;
+  }
+
+  .recipe-slot {
+    width: 64px;
+    height: 64px;
+  }
+
+  .selector-panel ion-card {
+    width: 85vw;
+  }
+
+  .crafting-section {
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .bang-button::part(native),
+  .craft-button::part(native) {
+    min-height: 72px;
+    border-width: 4px;
+    border-radius: 30px;
+  }
+}

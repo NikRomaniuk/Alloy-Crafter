@@ -6,6 +6,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="menu-content">
+  <div class="menu-shell">
+    <section class="title-box">
+      <h1>Alloy Crafter</h1>
+    </section>
 
+    <section class="menu-actions">
+      <ion-button
+        *ngIf="hasSaveGame"
+        class="menu-button"
+        expand="block"
+        (click)="onLoadGame()"
+      >
+        Load Game
+      </ion-button>
+
+      <ion-button
+        class="menu-button"
+        expand="block"
+        (click)="onNewGame()"
+      >
+        New Game
+      </ion-button>
+
+      <ion-button
+        class="menu-button"
+        expand="block"
+        (click)="onExitGame()"
+      >
+        Exit
+      </ion-button>
+    </section>
+  </div>
 </ion-content>

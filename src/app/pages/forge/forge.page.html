@@ -4,10 +4,99 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Forge</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="forge-content">
+  <div class="forge-shell" *ngIf="!isLoading && loadErrorMessage.length === 0">
+    <div class="forge-recipe">
+      <div class="recipe-row">
+        <div class="recipe-slot clickable" (click)="onToggleSelector('first')" [class.disabled]="isCrafting">
+          <img
+            *ngIf="getSlotMaterial('first') && isIconVisible(getSlotMaterial('first')!.id)"
+            [src]="'assets/images/icons/' + getSlotMaterial('first')!.id + '.png'"
+            (error)="onIconError(getSlotMaterial('first')!.id)"
+            alt="Material icon"
+          />
+          <span *ngIf="getSlotMaterial('first') && !isIconVisible(getSlotMaterial('first')!.id)" class="fallback">
+            {{ fallbackEmoji }}
+          </span>
+        </div>
+        <span class="quantity-label">x1</span>
+        <span class="plus">+</span>
+        <div class="recipe-slot clickable" (click)="onToggleSelector('second')" [class.disabled]="isCrafting">
+          <img
+            *ngIf="getSlotMaterial('second') && isIconVisible(getSlotMaterial('second')!.id)"
+            [src]="'assets/images/icons/' + getSlotMaterial('second')!.id + '.png'"
+            (error)="onIconError(getSlotMaterial('second')!.id)"
+            alt="Material icon"
+          />
+          <span *ngIf="getSlotMaterial('second') && !isIconVisible(getSlotMaterial('second')!.id)" class="fallback">
+            {{ fallbackEmoji }}
+          </span>
+        </div>
+        <span class="quantity-label">x1</span>
+        <span class="equals">=</span>
+        <div class="recipe-slot output">
+          <img
+            *ngIf="craftedMaterialId && isIconVisible(craftedMaterialId)"
+            [src]="'assets/images/icons/' + craftedMaterialId + '.png'"
+            (error)="onIconError(craftedMaterialId!)"
+            alt="Result icon"
+          />
+          <span *ngIf="craftedMaterialId && !isIconVisible(craftedMaterialId)" class="fallback">
+            {{ fallbackEmoji }}
+          </span>
+        </div>
+        <span class="quantity-label">{{ craftedQuantityLabel }}</span>
+      </div>
+
+      <div class="recipe-name">{{ craftedMaterialName }}</div>
+    </div>
+
+    <div class="selector-panel" *ngIf="openSelectorSlot" (click)="closeSelector()">
+      <ion-card (click)="$event.stopPropagation()">
+        <ion-card-content>
+          <ion-list>
+            <ion-radio-group
+              (ionChange)="onSelectMaterial($event.detail.value)"
+              [value]="getOpenSlotSelectionId()"
+            >
+              <ion-item *ngFor="let material of selectorMaterials">
+                <ion-label>
+                  <span class="selector-icon-slot">
+                    <img
+                      *ngIf="isIconVisible(material.id)"
+                      [src]="'assets/images/icons/' + material.id + '.png'"
+                      (error)="onIconError(material.id)"
+                      alt="Material icon"
+                    />
+                    <span *ngIf="!isIconVisible(material.id)" class="selector-emoji">{{ fallbackEmoji }}</span>
+                  </span>
+                  <span class="material-name">{{ material.name || material.id }}</span>
+                  <span class="material-quantity">({{ material.quantity }})</span>
+                </ion-label>
+                <ion-radio slot="start" [value]="material.id"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="crafting-section">
+      <div class="progress-label">Progress...</div>
+      <ion-progress-bar [value]="progressValue" type="determinate"></ion-progress-bar>
+
+      <ion-button class="bang-button" expand="block" (click)="onBang()" [disabled]="!canBang">
+        BANG!
+      </ion-button>
+
+      <ion-button class="craft-button" expand="block" color="primary" (click)="onStartCrafting()" [disabled]="!canStartCrafting">
+        Start Crafting
+      </ion-button>
+    </div>
+  </div>
+
+  <div class="loading-error" *ngIf="isLoading || loadErrorMessage.length > 0">
+    <div *ngIf="isLoading">Loading...</div>
+    <div *ngIf="loadErrorMessage.length > 0">{{ loadErrorMessage }}</div>
+  </div>
 </ion-content>

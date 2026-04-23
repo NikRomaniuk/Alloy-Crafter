@@ -1,27 +1,79 @@
-#container {
+:host {
+  display: block;
+}
+
+.menu-content {
+  --background: linear-gradient(180deg, #efefef 0%, #dadada 100%);
+}
+
+.menu-shell {
+  min-height: 100%;
+  padding: calc(var(--ion-safe-area-top) + 24px) 20px calc(var(--ion-safe-area-bottom) + 30px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 42px;
+}
+
+.title-box {
+  width: min(92vw, 690px);
+  border: 6px solid #111111;
+  border-radius: 6px;
+  background: #f4f4f4;
+  padding: clamp(28px, 6vw, 56px) 16px;
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
+.title-box h1 {
   margin: 0;
+  color: #111111;
+  font-size: clamp(2.2rem, 8vw, 4.8rem);
+  line-height: 1.03;
+  letter-spacing: 0.02em;
+  font-weight: 800;
 }
 
-#container a {
-  text-decoration: none;
+.menu-actions {
+  width: min(80vw, 520px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menu-button {
+  margin: 0;
+  width: 100%;
+  text-transform: none;
+  --background: transparent;
+  --background-hover: transparent;
+  --background-focused: transparent;
+  --background-activated: transparent;
+  --box-shadow: none;
+  --color: #111111;
+  font-size: clamp(1.5rem, 6vw, 2.9rem);
+  font-weight: 700;
+}
+
+.menu-button::part(native) {
+  min-height: 86px;
+  border: 5px solid #111111;
+  border-radius: 36px;
+  background: #f4f4f4;
+}
+
+@media (max-width: 480px) {
+  .menu-shell {
+    gap: 32px;
+  }
+
+  .title-box {
+    border-width: 4px;
+  }
+
+  .menu-button::part(native) {
+    min-height: 72px;
+    border-width: 4px;
+    border-radius: 30px;
+  }
 }
