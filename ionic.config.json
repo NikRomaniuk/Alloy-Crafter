@@ -1,0 +1,7 @@
+{
+  "name": "Alloy-Crafter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
