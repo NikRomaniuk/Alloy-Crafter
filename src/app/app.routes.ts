@@ -10,4 +10,20 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'hub',
+    loadComponent: () => import('./pages/hub/hub.page').then( m => m.HubPage)
+  },
+  {
+    path: 'forge',
+    loadComponent: () => import('./pages/forge/forge.page').then( m => m.ForgePage)
+  },
+  {
+    path: 'market',
+    loadComponent: () => import('./pages/market/market.page').then( m => m.MarketPage)
+  },
+  {
+    path: 'storage',
+    loadComponent: () => import('./pages/storage/storage.page').then( m => m.StoragePage)
+  },
 ];
