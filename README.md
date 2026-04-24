@@ -1,18 +1,40 @@
 # Alloy Crafter
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](#)
+[![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20Windows-blue)](#)
+[![Framework](https://img.shields.io/badge/framework-Ionic%208-blueviolet)](#)
+[![Angular](https://img.shields.io/badge/angular-18-dd0031)](#)
+[![PWA](https://img.shields.io/badge/PWA-supported-orange)](#)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](#)
-[![Development Stage](https://img.shields.io/badge/stage-alpha-yellow)](#)
+[![Status](https://img.shields.io/badge/stage-alpha-yellow)](#)
 
 ## Description
 **Alloy Crafter** is a resource management game built as a Progressive Web Application using the Ionic framework
 
 ## Key Features
-- **Placeholder:** Placeholder
+- **Navigation:** Hub navigation to Forge, Market, Storage, and Main Menu
+- **Crafting:** Forge crafting loop with two input slots, recipe matching and materials checks
+- **Presistance:** Persistent game state via Ionic Storage: Inventory, discovered Materials
+- **External API:** Remote loading of Materials and Recipes via HTTP
+- **Plugins:** Haptics on "Forge hit" and NativeAudio playback:
+  - Random "Forge hit" sound: `bang_01 | bang_02 | bang_03`
+  - Craft completion sound: `craft-complete_01`
+
+## User Guide
+1. Press **New Game** (or **Load Game** if a save already exists)
+2. In **Hub**, go to **Forge**
+3. Select 2 Materials in the input slots to preview the matching recipe result
+4. Press **Start Crafting**, then tap **BANG** to speed up progress
+5. When crafting completes, the new material is added to inventory and saved automatically
+6. Experiment and explore!
 
 ## Technical Stack
 - **Framework:** Ionic CLI v7.0+ with Angular Standalone Components
 - **Language:** TypeScript
+
+## Demo (Firebase Hosting)
+Use the hosted demo to try the App instantly with no installation required!
+- **Demo URL:** [Demo from Firebase](https://alloy-crafter.web.app)
 
 ## Quick Start
 
